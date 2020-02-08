@@ -1,0 +1,86 @@
+*{
+    box-sizing: border-box;
+}
+// variables: 
+$body-bg: linear-gradient(45deg, #f200ff 0%, #ffba42 100%);
+$bg-image-url: 'https://images.pexels.com/photos/6469/red-hands-woman-creative.jpg';
+$input-border:  0 0 1px;
+$error-color: red;
+$input-border: lightgrey;
+
+//scss
+.signup-page {
+    background-image: url($bg-image-url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: '';
+      opacity: .8;
+      background: $body-bg;
+    }
+}
+// input fields
+input{
+    width: 100%;
+    outline: 0;
+    border-width: 0 0 1px;
+    border-color: $input-border;
+    &:focus{
+        border-color: black;
+    }
+    &::placeholder{
+        font-size: small;
+        font-weight: lighter;
+    }
+    &.error{
+        border-color: $error-color;
+    }
+}
+
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+      background:darken($bg,16%);
+      transition: all 0.45s ease;
+    }
+    &:active {
+      background:darken($bg,25%);
+    } 
+  }
+.btn{
+    @include button-bg(#ffba42);
+}
+// show-hide password
+.password-trigger{
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    margin-right: 45px;
+    z-index: 9999;
+    user-select: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.signup-form-wrapper{
+    border-radius: 20px;
+    box-shadow: 0 15px 16.83px 0.17px rgba(0,0,0,.1);
+}
+.errorMessage {
+    color: $error-color;
+    font-size: xx-small;
+  }
+
+@media screen and (min-width: 1367px){
+    .signup-page{
+        height: 100vh;
+    }
+    
+}
