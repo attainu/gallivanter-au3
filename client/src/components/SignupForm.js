@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {emailRegex, nameRegex, passwordRegex} from '../utils/validations'
-
+import {stateMapper} from '../redux/store/store';
+import {connect} from 'react-redux';
 const formValid = (formErrors, formData) => {
     let valid = true;
   
@@ -17,7 +18,7 @@ const formValid = (formErrors, formData) => {
     return valid;
   };
   
-function SignupForm() {
+function SignupForm(props) {
     const userData = {
       firstName: null,
       lastName: null,
@@ -47,6 +48,15 @@ function SignupForm() {
         e.preventDefault();
     
         if (formValid(formErrors, formData)) {
+            props.dispatch({
+                type: "ADD_CREATOR",
+                data: {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    password: formData.password
+                }
+            })
           console.log(`
             --SUBMITTING--
             First Name: ${formData.firstName}
@@ -194,4 +204,4 @@ function SignupForm() {
     )
 }
 
-export default SignupForm
+export default connect(stateMapper)(SignupForm)
