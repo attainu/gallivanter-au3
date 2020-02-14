@@ -33,17 +33,12 @@ const Creator = db.sequelize.define('creator', {
             }
         }
     }
-    );
+);
     Creator.associate = (models) => {
         Creator.hasMany(models.BlogPost,{
             foreignKey: "creatorId",
             as: "blogPosts",
             onDelete: 'CASCADE'
         });
-        Creator.hasMany(models.Comment,{
-            foreignKey: 'creatorId',
-            as: 'comment',
-            onDelete: 'CASCADE'
-        })
     }
 module.exports = Creator

@@ -5,10 +5,10 @@ const addCreator = (formData) =>{
     baseApi.post(`creator/addcreator`,formData)
     // .then(data => data.json())
     .then(res =>{
-        console.log("Added user: ",res);
+        console.log("Added-user(API response-): ",res);
         store.dispatch({
             type: "CREATOR_ADDED",
-            data: res
+            data: res.data.error ? res.data.error : res.data
         })
     })
     .catch(error => {

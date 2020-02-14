@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 *{
     box-sizing: border-box;
+    font-family: poppins,Arial,sans-serif;
+
 }
 // variables: 
 $body-bg: linear-gradient(45deg, #f200ff 0%, #ffba42 100%);
@@ -25,6 +28,9 @@ $input-border: lightgrey;
       opacity: .8;
       background: $body-bg;
     }
+}
+.container {
+    max-width: 1210px;
 }
 // input fields
 input{
@@ -77,10 +83,49 @@ input{
     color: $error-color;
     font-size: xx-small;
   }
-
+.ftco-navbar-light {
+    background: 0 0!important;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+}
+.navbar-brand {
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1;
+  
+    i {
+      font-style: normal;
+      color: #ffd369;
+    }
+  }
+  .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+    font-size: 18px;
+    padding-top: .9rem;
+    padding-bottom: .9rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    opacity: 1 !important;
+  }
+  li{ 
+    a:hover{
+        color: #ffd369 !important
+    }
+}
 @media screen and (min-width: 1367px){
     .signup-page{
         height: 100vh;
     }
     
+}
+@media screen and (max-width: 756px){
+.ftco-navbar-light {
+    background: #000!important;
+    position: relative;
+    top: 0;
+}
 }

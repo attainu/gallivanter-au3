@@ -22,7 +22,7 @@ db.sequelize = sequelize
 db.Sequelize = Sequelize
 
 //to create table automatically in psql
-sequelize.sync()
+sequelize.sync({force: true})
   .then(() => {
     console.log(`Database & tables created!`)
   })

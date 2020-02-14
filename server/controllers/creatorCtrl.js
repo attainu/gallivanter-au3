@@ -1,7 +1,9 @@
 const Creator  = require('../models/CreatorModel');
+const BlogPost = require('../models/BlogPostModel');
 const bcrypt = require('bcrypt');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
+
 const addCreator = (req,res) =>{
     const data = {
         firstName: req.body.firstName,
@@ -79,8 +81,19 @@ const getCreator = (req,res) =>{
         }
     })
 }
+
+const addBlogPost = (req,res) => {
+    BlogPost.create(req.body)
+    .then(postData => {
+        res.json(postData)
+    })
+    .catch(error => {
+        res.status(500).json({error: error.message})
+    })
+}
 module.exports = {
     addCreator,
     creatorLogin,
-    getCreator
+    getCreator,
+    addBlogPost
 }

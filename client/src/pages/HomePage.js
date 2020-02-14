@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../components/_Header/Header'
+import Footer from '../components/_Footer/Footer'
 function HomePage() {
     return (
         <div>
             <Header></Header>
-            Home Page
-            <Footer></Footer>
+            {/* Home Page
+            <Footer></Footer> */}
         </div>
     )
 }
