@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Header() {
+function SingleArticle() {
     return (
         <div>
-            Header
+            
         </div>
     )
 }
 
-export default Header
+export default SingleArticle

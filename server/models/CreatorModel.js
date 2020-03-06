@@ -1,44 +1,36 @@
-const Sequelize = require('sequelize');
-const db = require('../db/dbConfig');
 const bcrypt = require('bcrypt');
-
-const Creator = db.sequelize.define('creator', {
+module.exports = (sequelize, datatype) => {
+    const CreatorModel = sequelize.define('creator',{
         id: {
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true,
-          allowNull: false
-        },
-        firstName: {
-            type: Sequelize.STRING,
+            type: datatype.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
             allowNull: false
-        },
-        lastName: {
-            type: Sequelize.STRING
-        },
-        email: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            unique: true
-        },
-        password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        }
-    },
-    {
-        hooks: {
-            beforeCreate: (Creator) => {
-                Creator.password = bcrypt.hashSync(Creator.password,10)
-            }
-        }
-    }
-);
-    Creator.associate = (models) => {
-        Creator.hasMany(models.BlogPost,{
-            foreignKey: "creatorId",
-            as: "blogPosts",
-            onDelete: 'CASCADE'
-        });
-    }
-module.exports = Creator
+          },
+          firstName: {
+              type: datatype.STRING,
+              allowNull: false
+          },
+          lastName: {
+              type: datatype.STRING
+          },
+          email: {
+              type: datatype.STRING,
+              allowNull: false,
+              unique: true
+          },
+          password: {
+              type: datatype.STRING,
+              allowNull: false
+          }
+      },
+      {
+          hooks: {
+              beforeCreate: (Creator) => {
+                  Creator.password = bcrypt.hashSync(Creator.password,10)
+              }
+          }
+      }
+  );
+  return CreatorModel;
+}

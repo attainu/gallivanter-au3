@@ -2,7 +2,7 @@ import baseApi from './baseApi';
 import {store} from '../redux/store/store';
 const addCreator = (formData) =>{
     console.log("formData: ",formData)
-    baseApi.post(`creator/addcreator`,formData)
+    baseApi.post(`/creator/addcreator`,formData)
     // .then(data => data.json())
     .then(res =>{
         console.log("Added-user(API response-): ",res);
@@ -15,7 +15,54 @@ const addCreator = (formData) =>{
         console.log('user-create-error: ',error);
     })
 }
-
+const loginUser = (formData) => {
+    baseApi.post(`/creator/login`, formData)
+    .then(res => {
+        console.log("login-data-response: ", res.data);
+        let user = {
+           accessToken: res.data.token
+         };
+         localStorage.setItem("user", JSON.stringify(user));
+    })
+    .catch(error => console.log("error: ", error));
+}
+const fetchUser = () => {
+    baseApi.get('/creator')
+    .then(res => {
+        console.log("userData: ", res.data);
+        store.dispatch({
+            type: "USER_DATA",
+            data: res.data.authData
+        })
+    })
+    .catch(error => console.log("error: ", error));
+}
+const fetchBlog = () => {
+    baseApi.get('/articles/')
+    .then(res => {
+        console.log("fetch-response: ",res.data);
+        store.dispatch({
+            type: "BLOGS_LOADED",
+            data: res.data
+        })
+    })
+    .catch(error => console.log("error: ", error));
+}
+const addBlog = (formData) => {
+    baseApi.post(`/creator/articles`,formData)
+    .then(res => {
+        console.log("blog-added-api-res: ", res.data);
+        store.dispatch({
+            type: "BLOG_ADDED",
+            data: res.data.postData
+        })
+    })
+    .catch(error => console.log("error: ", error))
+}
 export {
-    addCreator
+    addCreator,
+    loginUser,
+    fetchBlog,
+    fetchUser,
+    addBlog
 }

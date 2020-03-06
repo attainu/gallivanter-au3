@@ -1,39 +1,37 @@
-const Sequelize = require('sequelize');
-const db = require('../db/dbConfig');
-const BlogPost = require('../models/BlogPostModel');
-const Comment = db.sequelize.define('comment',{
-    commentId: {
-        type: Sequelize.INTEGER,
+const { BlogPost } = require("../db/dbConfig");
+module.exports = (sequelize, datatype) => {
+  const CommentModel = sequelize.define(
+    "comment",
+    {
+      commentId: {
+        type: datatype.INTEGER,
+        primaryKey: true,
         autoIncrement: true,
         allowNull: false
-    },
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false  
-    },
-    email: {
-        type: Sequelize.STRING,
+      },
+      name: {
+        type: datatype.STRING,
         allowNull: false
-    },
-    message: {
-        type: Sequelize.TEXT,
+      },
+      email: {
+        type: datatype.STRING,
         allowNull: false
-    },
-    blogPostId: {
-        type: Sequelize.INTEGER,
+      },
+      message: {
+        type: datatype.TEXT,
+        allowNull: false
+      },
+      postId: {
+        type: datatype.INTEGER,
         references: {
-            model: BlogPost,
-            key: 'blogId'
+          model: BlogPost,
+          key: "blogId"
         },
         allowNull: false
-    }
+      }
+    },
+    {}
+  );
 
-},{});
-Comment.associate = (models) => {
-    Comment.belongsTo(models.BlogPost,{
-        foreignKey: 'blogPostId',
-        as: 'blog',
-        onDelete: 'CASCADE'
-    })
-}
-module.exports = Comment
+  return CommentModel;
+};
