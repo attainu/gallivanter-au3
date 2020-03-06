@@ -1,13 +1,14 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Navbar from "../components/Navbar/Navbar"
+import TourList from '../components/TourList';
 function HomePage() {
     return (
-        <div>
-            <Header></Header>
-            Home Page
-            <Footer></Footer>
-        </div>
+        <div >
+        <React.Fragment>
+        <Navbar />
+        <TourList />
+        </React.Fragment>
+      </div>
     )
 }
 

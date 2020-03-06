@@ -1,0 +1,45 @@
+$body-bg: linear-gradient(45deg, #f200ff 0%, #ffba42 100%);
+$bg-image-url: 'https://images.pexels.com/photos/6469/red-hands-woman-creative.jpg';
+$input-border:  0 0 1px;
+$error-color: red;
+$input-border: lightgrey;
+
+body{
+  background-size: cover;
+  background-repeat: no-repeat;
+   background-image: url($bg-image-url);
+   background: $body-bg;
+}
+
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  display: flex;
+
+}
+.content-center{
+  padding-left: 80px;
+}
+.password-trigger{
+  position: absolute;
+  top: 50%;
+  right: .5rem;
+  margin-right: 45px;
+  z-index: 9999;
+  user-select: none;
+  &:hover{
+      cursor: pointer;
+  }
+}
+.errorMessage {
+  color: $error-color;
+  font-size: xx-small;
+}
+
