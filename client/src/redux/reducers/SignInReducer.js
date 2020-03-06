@@ -1,9 +1,9 @@
 import { loginUser} from '../../services/apiCalls';
 const SignInReducer = (loginData = {}, action) => {
-    switch(action.type){
-        case "USER_LOGIN":
-            loginUser(action.data);
-        default: return loginData;
+    if(action.type === "USER_LOGIN"){
+        console.log('login:', action.data);
+        loginUser(action.data);
     }
+    return loginData
 }
 export default SignInReducer;

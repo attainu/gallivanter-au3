@@ -10,6 +10,7 @@ import ContactPage from './pages/ContactPage'
 import CreatorSignup from './pages/CreatorSignup'
 import SingleArticle from './components/_Article/SingleArticle'
 import CreatorLogin from './pages/CreatorLogin'
+import CreatorBlog from './pages/CreateBlog'
 function App(props) {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App(props) {
           <Route path='/contact'><ContactPage></ContactPage></Route>
           <Route path = '/signup'><CreatorSignup></CreatorSignup></Route>
           <Route path ='/login'><CreatorLogin></CreatorLogin></Route>
+          <Route path ='/author'><CreatorBlog></CreatorBlog></Route>
         </Switch>
       </Router>
     </div>

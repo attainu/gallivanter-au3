@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { emailRegex, nameRegex, passwordRegex } from "../../utils/validations";
 import { stateMapper } from "../../redux/store/store";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const formValid = (formErrors, formData) => {
   let valid = true;
 
@@ -39,6 +39,7 @@ function SignupForm(props) {
   const [formErrors, setFormErrors] = useState(errors);
   const [passShow, setPassShow] = useState({ hidden: true });
   const [toggleBtn, setToggleBtn] = useState(false);
+  const history = useHistory();
 
   const toggleShow = () => {
     setPassShow({ ...passShow, hidden: !passShow.hidden });
@@ -59,7 +60,7 @@ function SignupForm(props) {
         }
       });
       alert('Registered Success!');
-      props.history.push('/login')
+      history.push('/login')
       // props.history.push('/login')
       //   console.log(`
       //     --SUBMITTING--

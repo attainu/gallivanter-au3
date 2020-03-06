@@ -16,6 +16,7 @@ const addCreator = (formData) =>{
     })
 }
 const loginUser = (formData) => {
+    console.log('api-login-data: ', formData)
     baseApi.post(`/creator/login`, formData)
     .then(res => {
         console.log("login-data-response: ", res.data);
@@ -26,8 +27,18 @@ const loginUser = (formData) => {
     })
     .catch(error => console.log("error: ", error));
 }
+const getUserToken = () => {
+    let user = localStorage.getItem("user");
+    if(user) user = JSON.parse(user);
+    return user.accessToken
+}
+
 const fetchUser = () => {
-    baseApi.get('/creator')
+    const token = getUserToken();
+
+    baseApi.get('/creator/',{
+        "Authorization" : `bearer ${token}`
+    })
     .then(res => {
         console.log("userData: ", res.data);
         store.dispatch({

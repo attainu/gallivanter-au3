@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import ImageUploadForm from './ImageUploadFrom';
-import { EditorState, convertToRaw } from 'draft-js';
+// import ImageUploadForm from './ImageUploadFrom';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
+import {stateMapper} from '../../redux/store/store'
+import {connect} from 'react-redux'
 // import Editor from 'for-editor';
-function BlogEditorForm() {
+function BlogEditorForm(props) {
     const formData = {
         title: "",
         cover: "",
-        creatorId:"1"
+        creatorId:props.getUser.id
     }
     const [inputData, setInput] = useState(formData);
     const [editorData, setEditorData] = useState({editorState: EditorState.createEmpty()})
@@ -23,14 +25,30 @@ function BlogEditorForm() {
         console.log(editorData.editorState)
         setEditorData({...editorData, editorState})
     }
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.dispatch({
+            type: "ADD_BLOG",
+            data: {
+                creatorId: inputData.creatorId,
+                title: inputData.title,
+                body: inputData.body
+            }
+        })
+        console.log(` -- SUBMITTED--
+        creatorId: ${formData.creatorId}
+        title: ${formData.title}
+        body: ${formData.body}
+        `)
+    }
     return (
         <React.Fragment>
             <textarea
           disabled
           value={draftToHtml(convertToRaw(editorData.editorState.getCurrentContent()))}
         />
-            <ImageUploadForm name ='cover'></ImageUploadForm>
-            <form>
+            
+            <form onSubmit={handleSubmit}>
                 <div className='form-group'>
                     <label htmlFor='title'>Title</label>
                     <input 
@@ -53,9 +71,15 @@ function BlogEditorForm() {
                    />
                   
                </div>
+               <button className='btn'>Submit</button>
             </form>
+            {
+                   (props.createBlog.title) ? (
+                    <div className='alert alert-success'>Blog Created</div>
+                   ): ""
+               }
         </React.Fragment>
     )
 }
 
-export default BlogEditorForm
+export default connect(stateMapper)(BlogEditorForm)

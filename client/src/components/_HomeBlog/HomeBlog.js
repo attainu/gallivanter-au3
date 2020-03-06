@@ -25,6 +25,7 @@ function HomeBlog(props, { url = String(window.location) }) {
                         <img
                           src={blog.cover}
                           className="img w-100 mb-3 mb-md-0"
+                          atl={blog.title}
                         ></img>
                       </Link>
                     </div>
