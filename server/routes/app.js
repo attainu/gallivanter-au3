@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
+const {getAllBlog, getOneBlog} = require('../controllers/appCtrl')
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.send(`<h1>home page</h1>`);
-});
+router.get('/articles/:userId?', getAllBlog);
+
+router.get('articles/:articleId', getOneBlog)
 
 module.exports = router;

@@ -1,6 +1,8 @@
 const express  =require("express");
 const app = express();
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const path = require('path');
 require("dotenv").config();
 
 const creatorRoute = require('./routes/creatorRoute');
@@ -9,7 +11,8 @@ const appRoute = require('./routes/app');
 app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
-
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname,"../client/build")));
 
 // app.get("*",(req,res)=>{
