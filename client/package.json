@@ -13,7 +13,7 @@
     "draftjs-to-html": "^0.9.1",
     "for-editor": "^0.3.5",
     "html-to-draftjs": "^1.5.0",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
